@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <input type="hidden" id="APIBaseURL" value="@System.Configuration.ConfigurationManager.AppSettings["APIBaseURL"].ToString()" />
+    <input type="hidden" id="UploadFolder" value="@System.Configuration.ConfigurationManager.AppSettings["UploadFolder"].ToString()" />
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="/Home">Movie Reservation</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Cinemas" data-title="Cinemas">Cinemas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Movies" data-title="Movies">Movies</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Schedules" data-title="Schedules">Schedules</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Reservations" data-title="Reservations">Reservations</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container py-2">
+        @RenderBody()
+    </div>
+
+    <!-- TOAST -->
+    <div aria-live="polite" aria-atomic="true" class="position-relative" style="z-index: 9999999999">
+        <div class="toast-container position-fixed bottom-0 end-0 p-3">
+            <div class="toast toast-success text-white bg-success" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header">
+                    <img src="favicon.ico" class="rounded me-2" alt="...">
+                    <strong class="me-auto">Success!</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body"></div>
+            </div>
+
+            <div class="toast toast-error text-white bg-danger" role="alert" aria-live="assertive" aria-atomic="true">
+                <div class="toast-header">
+                    <img src="favicon.ico" class="rounded me-2" alt="...">
+                    <strong class="me-auto">Oops!</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body"></div>
+            </div>
+        </div>
+    </div>
+    <!-- TOAST -->
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+
+    @Scripts.Render("~/Scripts/_Layout.js")
+    @Scripts.Render("~/Scripts/Home/reservations.js")
+    @Scripts.Render("~/Scripts/Cinemas/add-edit-cinema.js")
+    @Scripts.Render("~/Scripts/Movies/add-edit-movie.js")
+    @Scripts.Render("~/Scripts/Schedules/add-edit-schedule.js")
+    @Scripts.Render("~/Scripts/Schedules/schedules.js")
+    @Scripts.Render("~/Scripts/History/history.js")
+
+    @Html.Partial("~/Views/Home/Loading.cshtml")
+    @Html.Partial("~/Views/Home/Confirmation.cshtml")
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>
+
+

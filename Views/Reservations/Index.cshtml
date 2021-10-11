@@ -1,0 +1,111 @@
+﻿@model IEnumerable<MovieReservationSystem.Models.GetCinemaSeats>
+
+@{
+    ViewBag.Title = "Reservations";
+}
+
+<div id="reservations">
+    <form id="formReservation">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="text-center border border-2 bg-dark text-white mb-2 p-2">
+                    <b>Screen</b>
+                </div>
+                <div class="text-end mb-5">
+                    <small>Legends:</small>
+                    <button type="button" class="btn badge rounded-pill bg-secondary pe-none">Available</button>
+                    <button type="button" class="btn badge rounded-pill bg-success pe-none">Selected</button>
+                    <button type="button" class="btn badge rounded-pill bg-danger pe-none" disabled>Reserved</button>
+                </div>
+                <div id="cinemaSeats" class="text-center mb-1">
+                    @{
+                        var currentRow = 1;
+                        char[] letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
+                    }
+
+                    @foreach (var item in Model)
+                    {
+                        if (currentRow != item.row)
+                        {
+                            currentRow = item.row;
+                            <br />
+                        }
+
+                        if (item.status == "RESERVED")
+                        {
+                            <button type="button" class="btn btn-lg btn-danger p-2 m-1" style="width: 75px;" disabled>@letters[item.row - 1]@item.col</button>
+                        }
+                        else
+                        {
+                            <button type="button" class="btn btn-lg btn-secondary p-2 m-1" style="width: 75px;" data-seat_id="@item.seat_id">@letters[item.row - 1]@item.col</button>
+                        }
+                    }
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="form-floating mb-2">
+                    <select class="form-select" id="selectCinema" name="cinema_id" aria-label="Select Cinema">
+                        <option value="" selected>Select Cinema</option>
+                    </select>
+                    <label for="selectCinema">Cinema</label>
+                </div>
+                <div class="form-floating mb-2">
+                    <select class="form-select" id="selectSchedule" name="schedule_id" aria-label="Select Schedule">
+                        <option value="" selected>Select Schedule</option>
+                    </select>
+                    <label for="selectCinema">Schedule</label>
+                </div>
+                <div class="form-floating mb-2">
+                    <input type="datetime-local" class="form-control" id="inputDateTime" autocomplete="off" name="start_time" placeholder="Date & Time" readonly>
+                    <label for="inputDateTime">Date & Time</label>
+                </div>
+                <div class="form-floating mb-2">
+                    <input type="text" class="form-control" id="inputTitle" autocomplete="off" placeholder="Movie Title" readonly>
+                    <label for="inputTitle">Movie Title</label>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-6 pe-md-1">
+                        <div class="form-floating mb-2">
+                            <input type="text" class="form-control text-end" id="inputSelected" autocomplete="off" placeholder="Seats Selected" readonly>
+                            <label for="inputSelected">Seats Selected</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6 ps-md-1">
+                        <div class="form-floating mb-2">
+                            <input type="text" class="form-control text-end" id="inputAvailable" autocomplete="off" placeholder="Seats Available" readonly>
+                            <label for="inputAvailable">Seats Available</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 pe-md-1">
+                        <div class="form-floating mb-2">
+                            <input type="number" min="0.00" step="0.01" class="form-control text-end" id="inputPrice" name="price" placeholder="Price" value="0.00" readonly>
+                            <label for="inputPrice">Price</label>
+                        </div>
+                    </div>
+                    <div class="col-md-6 ps-md-1">
+                        <div class="form-floating mb-2">
+                            <input type="number" min="0.00" step="0.01" class="form-control text-end" id="inputTotal" name="total" placeholder="Total" value="0.00" readonly>
+                            <label for="inputTotal">Total</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-floating mb-2">
+                    <input type="text" class="form-control" id="inputName" autocomplete="off" placeholder="Customer's Name" name="customer_name">
+                    <label for="inputName">Customer's Name</label>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 pe-md-1 d-grid mb-2">
+                        <button type="button" class="btn btn-lg btn-outline-secondary" id="btnClear">Clear Selection</button>
+                    </div>
+                    <div class="col-md-6 ps-md-1 d-grid mb-2">
+                        <button type="button" class="btn btn-lg btn-success" id="btnSave">Reserve</button>
+                    </div>
+                </div>
+                <img id="imgMovie" class="img-fluid img-thumbnail mb-2" />
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,53 @@
+﻿@model IEnumerable<MovieReservationSystem.Models.GetNowShowing>
+
+@{
+    ViewBag.Title = "Movie Reservation System";
+}
+
+@if (Model.Count() == 0)
+{
+    <div class="text-center">
+        <h1 class="display-3">No movies available.</h1>
+        <p class="mb-1">
+            Please proceed to these pages and add new records:
+        </p>
+        <ol class="breadcrumb d-flex justify-content-center">
+            <li class="breadcrumb-item"><a href="/Cinemas">Cinemas</a></li>
+            <li class="breadcrumb-item"><a href="/Movies">Movies</a></li>
+            <li class="breadcrumb-item"><a href="/Schedules">Schedules</a></li>
+        </ol>
+    </div>
+}
+
+<div class="row row-cols-1 row-cols-md-3 g-4" id="home">
+    @foreach (var item in Model)
+    {
+        <div class="col">
+            <div class="card">
+                <!-- h-100 -->
+                <div class="card-header">
+                    <h4 class="m-0 text-center">@item.description</h4>
+                </div>
+                <img src="@item.imgurl" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h4 class="card-title fw-bolder text-center">@item.movietitle</h4>
+                    <p class="card-text">
+                        Starts @item.on<u>@item.starts</u>@item.at: <b>@item.date_time_formatted</b><br />
+                        Ticket Price: <b>₱@item.price</b><br />
+                        Seats available: <span class="badge rounded-pill @item.seat_count_badge">@item.seat_count</span><br />
+                    </p>
+                    <div class="d-grid">
+                        <a type="button" class="btn btn-sm btn-secondary stretched-link" target="_blank" href="/Reservations?schedule_id=@item.schedule_id&cinema_id=@item.cinema_id"
+                           data-schedule_id="@item.schedule_id" data-cinema_id="@item.cinema_id" data-title="@item.movietitle" data-date_time="@item.date_time"
+                           data-price="@item.price">
+                            Reserve now.
+                        </a>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted">@item.moviedescription</small>
+                </div>
+            </div>
+        </div>
+    }
+</div>

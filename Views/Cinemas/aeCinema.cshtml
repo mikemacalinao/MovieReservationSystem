@@ -1,0 +1,30 @@
+﻿<div class="modal fade" id="aeCinema" data-bs-backdrop="static" data-bs-keyboard="true" tabindex="-1" aria-labelledby="aeCinemaLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="aeCinemaLabel">Cinema</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="formCinema">
+                <div class="modal-body">
+                    <div class="form-floating mb-2">
+                        <input type="text" class="form-control form-control-sm" id="inputDescription" autocomplete="off" name="description" placeholder="Description" maxlength="50">
+                        <label for="inputDescription">Description</label>
+                    </div>
+                    <div class="form-floating mb-2">
+                        <input type="number" min="18" max="130" step="1" value="0" class="form-control form-control-sm" id="inputSeatCount" autocomplete="off" name="seats" placeholder="Seat Count">
+                        <label for="inputSeatCount">Seat Count</label>
+                    </div>
+                    <div class="form-floating">
+                        <input type="number" min="0.00" step="0.01" value="0.00" class="form-control form-control-sm decimal" id="inputDefaultPrice" autocomplete="off" name="default_price" placeholder="Default Price">
+                        <label for="inputDefaultPrice">Default Price</label>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-success" id="btnSave">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

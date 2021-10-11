@@ -1,0 +1,25 @@
+﻿th {
+    text-align: center;
+}
+
+textarea {
+    resize: none;
+}
+
+.form-control:focus, .form-select:focus {
+    border-color: #1a1e21;
+    box-shadow: 0 0 0 0.25rem rgba(66, 70, 73, 0.5);
+}
+
+.toast-container {
+    z-index: 999999999999;
+}
+
+.toast-container img {
+    width: 20px;
+}
+
+.form-floating-group input {
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+}

@@ -1,0 +1,77 @@
+﻿@model IEnumerable<MovieReservationSystem.Models.GetHistory>
+
+@{
+    ViewBag.Title = "Schedules";
+}
+
+<div id="history">
+    @{
+        var disabled = Model.Count() == 0 ? "disabled" : "";
+
+        <div class="d-grid mb-2">
+            <button type="button" class="btn btn-success" id="btnExcel" @disabled>
+                Export History to Excel
+            </button>
+        </div>
+    }
+    <div class="card">
+        <div class="card-header text-center">
+            <h4 class="m-0 card-title">History</h4>
+        </div>
+        <div class="card-body p-0">
+            <table class="table table-striped table-hover table-responsive align-middle m-0">
+                <thead>
+                    <tr>
+                        <th width="80">
+                            <button type="button" class="btn btn-sm btn-danger" id="btnCancel">
+                                Cancel
+                            </button>
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.date_reserved)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.customer_name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.status)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.date_cancelled)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.seats)
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td class="text-center">
+                            <button type="button" class="btn btn-sm btn-secondary" data-reservation_id="@item.reservation_id" @item.disabled>
+                                Select
+                            </button>
+                        </td>
+                        <td class="text-center">
+                            @item.date_reserved_formatted
+                        </td>
+                        <td>
+                            @item.customer_name
+                        </td>
+                        <td class="text-center">
+                            <span class="badge @item.status_badge">@item.status</span>
+                        </td>
+                        <td class="text-center">
+                            @item.date_cancelled_formatted
+                        </td>
+                        <td class="text-center">
+                            @item.seats
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

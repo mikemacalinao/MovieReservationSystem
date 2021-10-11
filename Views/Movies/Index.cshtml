@@ -1,0 +1,68 @@
+﻿@model IEnumerable<MovieReservationSystem.Models.GetMovies>
+
+@{
+    ViewBag.Title = "Movies";
+}
+
+<div class="movie">
+    <div class="card">
+        <div class="card-header text-center">
+            <h4 class="m-0">@ViewBag.Title</h4>
+        </div>
+        <div class="card-body p-0">
+            <table class="table table-striped table-hover table-responsive align-middle m-0">
+                <thead>
+                    <tr>
+                        <th width="80">
+                            <button type="button" class="btn btn-sm btn-dark" data-bs-toggle="modal" data-bs-target="#aeMovie" data-action="add">
+                                Add
+                            </button>
+                        </th>
+                        <th width="80">
+                            
+                        </th>
+                        <th width="200">
+                            @Html.DisplayNameFor(model => model.title)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.description)
+                        </th>
+                        <th width="150">
+                            @Html.DisplayNameFor(model => model.default_price)
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="text-center">
+                                <button type="button" class="btn btn-sm btn-secondary" data-bs-toggle="modal" data-bs-target="#aeMovie" data-action="edit" @item.disabled
+                                        data-movie_id="@item.movie_id" data-title="@item.title" data-description="@item.description" data-imgtype="@item.imgtype" data-imgurl="@item.imgurl" data-default_price="@item.default_price">
+                                    Edit
+                                </button>
+                            </td>
+                            <td class="text-center">
+                                <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#aeMovie" data-action="image"
+                                        data-movie_id="@item.movie_id" data-title="@item.title" data-description="@item.description" data-imgtype="@item.imgtype" data-imgurl="@item.imgurl" data-default_price="@item.default_price">
+                                    Image
+                                </button>
+                            </td>
+                            <td>
+                                @item.title
+                            </td>
+                            <td>
+                                @item.description
+                            </td>
+                            <td class="text-end">
+                                @item.default_price
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@Html.Partial("~/Views/Movies/aeMovie.cshtml")

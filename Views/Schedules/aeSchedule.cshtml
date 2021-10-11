@@ -1,0 +1,44 @@
+﻿<div class="modal fade" id="aeSchedule" data-bs-backdrop="static" data-bs-keyboard="true" tabindex="-1" aria-labelledby="aeScheduleLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="aeScheduleLabel">Schedule</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="formSchedule">
+                <div class="modal-body">
+                    <div class="form-floating mb-2">
+                        <select class="form-select form-select-sm" id="selectMovie" name="movie_id" aria-label="Select Movie">
+                            <option value="" selected>Select Movie</option>
+                        </select>
+                        <label for="selectMovie">Movie</label>
+                    </div>
+                    <div class="form-floating mb-2">
+                        <select class="form-select form-select-sm" id="selectCinema" name="cinema_id" aria-label="Select Cinema">
+                            <option value="" selected>Select Cinema</option>
+                        </select>
+                        <label for="selectCinema">Cinema</label>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6 pe-md-1">
+                            <div class="form-floating mb-2">
+                                <input type="datetime-local" max="9999-12-31T23:59" class="form-control form-control-sm" id="inputDateTime" autocomplete="off" name="date_time" placeholder="Date Time">
+                                <label for="inputDateTime">Date Time</label>
+                            </div>
+                        </div>
+                        <div class="col-md-6 ps-md-1">
+                            <div class="form-floating">
+                                <input type="number" min="0.00" step="0.01" value="0.00" class="form-control form-control-sm decimal" id="inputPrice" autocomplete="off" name="price" placeholder="Price">
+                                <label for="inputPrice">Price</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-between">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-success" id="btnSave">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
